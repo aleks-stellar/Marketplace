@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "CashMonitor"
+name = "marketplace"
 version = "0.1.0"
 description = ""
 authors = ["sandroaksyonov@gmail.com"]
