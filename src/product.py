@@ -11,4 +11,7 @@ class Product:
             price: float,
             quantity: int
     ) -> None:
-        pass
+        self.name = name
+        self.description = description
+        self.price = price
+        self.quantity = quantity
