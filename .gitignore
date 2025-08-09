@@ -1,2 +1,5 @@
 .idea/
 logs/
+.coverage
+#htmlcov/
+.coverage.*
