@@ -1,10 +1,8 @@
-from typing import Dict, List, Type, TypeVar
-
-T = TypeVar("T", bound="Product")
+from typing import Dict, List, Type
 
 
 class Product:
-    """Класс для создания продукта."""
+    __products_list: List["Product"] = []
 
     name: str
     description: str
@@ -12,41 +10,37 @@ class Product:
     quantity: int
 
     def __init__(
-            self,
-            name: str,
-            description: str,
-            price: float,
-            quantity: int
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
     ) -> None:
         self.name = name
         self.description = description
         self.price = price
         self.quantity = quantity
+        self.__class__.__products_list.append(self)
 
     @classmethod
-    def new_product(
-            cls: Type[T],
-            product_params: Dict,
-            products_list: List[T]
-    ) -> T:
+    def new_product(cls: Type["Product"], product_params: Dict) -> "Product":
         name = product_params["name"]
         description = product_params["description"]
         price = product_params["price"]
         quantity = product_params["quantity"]
 
-        for product in products_list:
-            # Если товар с тем же именем есть в списке, то обновляем цену и количество
+        for product in cls.__products_list:
             if product.name == name:
                 product.quantity += quantity
                 if product.price < price:
                     product.price = price
                 return product
 
-        new_prod = cls(name, description, price, quantity)
-        products_list.append(new_prod)
-        return new_prod
+        return cls(name, description, price, quantity)
 
     def __repr__(self) -> str:
-        return (f"Product("
-                f"'{self.name}', '{self.description}', {self.price}, {self.quantity}"
-                f")")
+        return (
+            f"Product("
+            f"'{self.name}', '{self.description}', {self.price}, {self.quantity}"
+            f")"
+        )
