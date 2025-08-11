@@ -1,6 +1,7 @@
+from unittest.mock import patch
+
 import pytest
 from pytest import CaptureFixture
-from unittest.mock import patch
 
 from src.product import Product
 
@@ -24,21 +25,22 @@ def test_product_price_get(prod_1: Product) -> None:
 
 
 def test_product_price_zero(prod_1: Product) -> None:
-    with patch("builtins.input", return_value = "y"):
+    with patch("builtins.input", return_value="y"):
         assert input("...") == "y"
         prod_1.price = 0
         assert prod_1.price == 0
-    with patch("builtins.input", return_value = "..."):
+    with patch("builtins.input", return_value="..."):
         assert input("...") == "..."
         prod_1.price = 0
         # Цена у prod1 поменялась на 0 в прошлом assert
         assert prod_1.price == 0
 
+
 def test_product_price_zero_no_agreement(
         prod_1: Product,
         capsys: CaptureFixture
 ) -> None:
-    with patch("builtins.input", return_value = "..."):
+    with patch("builtins.input", return_value="..."):
         assert input("...") == "..."
         prod_1.price = 0
         assert prod_1.price == 180000.0
@@ -55,6 +57,7 @@ def test_product_price_neg(
     assert prod_1.price == -10
     captured = capsys.readouterr()
     assert captured.out == "Цена не должна быть нулевая или отрицательная\n"
+
 
 def test_product_price_neg_no_agreement(
         prod_1: Product,
