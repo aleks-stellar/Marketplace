@@ -32,7 +32,12 @@ class Product:
 
     @price.setter
     def price(self, new_price: float) -> None:
-        self.__price = new_price
+        if new_price < self.__price:
+            agreement = str(input('Если согласны на понижение цены, введите "y": '))
+            if agreement == "y":
+                self.__price = new_price
+        else:
+            self.__price = new_price
 
     @classmethod
     def new_product(cls: Type["Product"], product_params: Dict) -> "Product":
