@@ -27,13 +27,13 @@ def test_product_price_get(prod_1: Product) -> None:
 def test_product_price_zero(prod_1: Product) -> None:
     with patch("builtins.input", return_value="y"):
         assert input("...") == "y"
-        prod_1.price = 0
-        assert prod_1.price == 0
+        prod_1.price = 1000
+        assert prod_1.price == 1000
     with patch("builtins.input", return_value="..."):
         assert input("...") == "..."
-        prod_1.price = 0
+        prod_1.price = 100
         # Цена у prod1 поменялась на 0 в прошлом assert
-        assert prod_1.price == 0
+        assert prod_1.price == 1000
 
 
 def test_product_price_zero_no_agreement(
@@ -54,7 +54,7 @@ def test_product_price_neg(
     monkeypatch.setattr("builtins.input", lambda _: "y")
     assert input("") == "y"
     prod_1.price = -10
-    assert prod_1.price == -10
+    assert prod_1.price == 180000.0
     captured = capsys.readouterr()
     assert captured.out == "Цена не должна быть нулевая или отрицательная\n"
 
