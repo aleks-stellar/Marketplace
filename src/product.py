@@ -24,15 +24,13 @@ class Product:
 
     @property
     def price(self) -> float:
-        if self.__price <= 0:
-            print("Цена не должна быть нулевая или отрицательная")
-            return self.__price
-        else:
-            return self.__price
+        return self.__price
 
     @price.setter
     def price(self, new_price: float) -> None:
-        if new_price < self.__price:
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        elif new_price < self.__price:
             agreement = str(input('Если согласны на понижение цены, введите "y": '))
             if agreement == "y":
                 self.__price = new_price
