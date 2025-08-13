@@ -20,3 +20,7 @@ def test_category_add_product(cat_1: Category, prod_3: Product) -> None:
         'Iphone 15, 210000.0 руб. Остаток: 8 шт.',
         '55\" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
     ]
+
+
+def test_category_string_representation(cat_1: Category) -> None:
+    assert str(cat_1) == "Смартфоны, количество продуктов: 13 шт."
