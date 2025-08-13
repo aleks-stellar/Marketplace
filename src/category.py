@@ -38,5 +38,5 @@ class Category:
         result = "\n".join(products_list)
         return result
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}, количество продуктов: {self.product_count} шт."
