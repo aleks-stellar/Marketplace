@@ -53,6 +53,9 @@ class Product:
 
         return cls(name, description, price, quantity)
 
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
     def __repr__(self) -> str:
         return (
             f"Product("
