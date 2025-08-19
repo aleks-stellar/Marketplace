@@ -3,7 +3,7 @@ from unittest.mock import patch
 import pytest
 from pytest import CaptureFixture
 
-from src.product import Product
+from src.product import LawnGrass, Product, Smartphone
 
 
 def test_product_init(prod_1: Product) -> None:
@@ -105,3 +105,43 @@ def test_add_products(prod_2: Product, prod_3: Product) -> None:
     assert result == 2541000.0
     with pytest.raises(TypeError):
         prod_2 + 100.0
+
+
+def test_smartphone_init() -> None:
+    phone = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый"
+    )
+    assert phone.name == "Samsung Galaxy S23 Ultra"
+    assert phone.description == "256GB, Серый цвет, 200MP камера"
+    assert phone.price == 180000.0
+    assert phone.quantity == 5
+    assert phone.efficiency == 95.5
+    assert phone.model == "S23 Ultra"
+    assert phone.memory == 256
+    assert phone.color == "Серый"
+
+
+def test_lawngrass_init() -> None:
+    grass = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый"
+    )
+    assert grass.name == "Газонная трава"
+    assert grass.description == "Элитная трава для газона"
+    assert grass.price == 500.0
+    assert grass.quantity == 20
+    assert grass.country == "Россия"
+    assert grass.germination_period == "7 дней"
+    assert grass.color == "Зеленый"
