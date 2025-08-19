@@ -11,7 +11,7 @@ def test_product_init(prod_1: Product) -> None:
     assert prod_1.description == "256GB, Серый цвет, 200MP камера"
     assert prod_1.price == 180000.0
     assert prod_1.quantity == 5
-    assert str(prod_1) == (
+    assert repr(prod_1) == (
                     f''
                     f"Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
                     f"{float(180000.0)}, {int(5)})"
@@ -94,3 +94,14 @@ def test_product_new_product_same_name(prod_1: Product) -> None:
     assert new_prod.name == "Samsung Galaxy S23 Ultra"
     assert new_prod.quantity == 15
     assert new_prod.price == 200000.0
+
+
+def test_product_string_representation(prod_1: Product) -> None:
+    assert str(prod_1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_add_products(prod_2: Product, prod_3: Product) -> None:
+    result = prod_2 + prod_3
+    assert result == 2541000.0
+    with pytest.raises(TypeError):
+        prod_2 + 100.0
