@@ -1,5 +1,4 @@
 from src.category import Category
-from src.product import Product
 from src.product import Smartphone, LawnGrass
 
 if __name__ == '__main__':
