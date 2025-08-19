@@ -54,11 +54,11 @@ class Product:
         return cls(name, description, price, quantity)
 
     def __add__(self, other: "Product") -> float:
-        if isinstance(other, Product):
+        if type(other) is type(self):
             summ = self.quantity * self.__price + other.quantity * other.__price
             return float(summ)
         else:
-            raise TypeError("Слагаемыми должны быть объекты класса Product")
+            raise TypeError("Слагаемые должны принадлежать одному подклассу класса Product.")
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
