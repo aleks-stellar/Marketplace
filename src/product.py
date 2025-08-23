@@ -54,11 +54,11 @@ class Product:
         return cls(name, description, price, quantity)
 
     def __add__(self, other: "Product") -> float:
-        if isinstance(other, Product):
+        if type(other) is type(self):
             summ = self.quantity * self.__price + other.quantity * other.__price
             return float(summ)
         else:
-            raise TypeError("Слагаемыми должны быть объекты класса Product")
+            raise TypeError("Слагаемые должны принадлежать одному подклассу класса Product.")
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
@@ -69,3 +69,52 @@ class Product:
             f"'{self.name}', '{self.description}', {self.__price}, {self.quantity}"
             f")"
         )
+
+
+class Smartphone(Product):
+    """Дочерний класс для категории продуктов - смартфоны."""
+
+    efficiency: float
+    model: str
+    memory: int
+    color: str
+
+    def __init__(
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            efficiency: float,
+            model: str,
+            memory: int,
+            color: str
+    ) -> None:
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """Дочерний класс для категории продуктов - трава газонная."""
+
+    country: str
+    germination_period: str
+    color: str
+
+    def __init__(
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            country: str,
+            germination_period: str,
+            color: str
+    ) -> None:
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color

@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 from src.product import Product
 
@@ -24,3 +26,8 @@ def test_category_add_product(cat_1: Category, prod_3: Product) -> None:
 
 def test_category_string_representation(cat_1: Category) -> None:
     assert str(cat_1) == "Смартфоны, количество продуктов: 13 шт."
+
+
+def test_category_add_not_product(cat_1: Category) -> None:
+    with pytest.raises(TypeError):
+        cat_1.add_product("Not a product")
