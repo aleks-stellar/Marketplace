@@ -1,9 +1,10 @@
-from typing import Dict, List, Self, Optional, Union, Any
+from typing import Any, Dict, List, Self, Union
 
 from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
 
-class Product(BaseProduct):
+class Product(BaseProduct, PrintMixin):
     __products_list: List[Self] = []
 
     name: str
@@ -23,6 +24,7 @@ class Product(BaseProduct):
         self.__price = price
         self.quantity = quantity
         self.__class__.__products_list.append(self)
+        super().__init__()
 
     @property
     def price(self) -> float:
