@@ -6,6 +6,6 @@ class PrintMixin:
     def __repr__(self) -> str:
         return (
             f"{self.__class__.__name__}("
-            f"'{self.name}', '{self.description}', {self.__price}, {self.quantity}"
+            f"'{self.name}', '{self.description}', {self.price}, {self.quantity}"
             f")"
         )
