@@ -4,10 +4,6 @@ from typing import Dict, Self
 
 class BaseProduct(ABC):
 
-    @abstractmethod
-    def __init__(self) -> None:
-        pass
-
     @classmethod
     @abstractmethod
     def new_product(cls, product_params: Dict) -> Self:
