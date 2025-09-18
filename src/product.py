@@ -1,8 +1,11 @@
-from typing import Dict, List, Type
+from typing import Any, Dict, List, Self, Union
+
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
 
-class Product:
-    __products_list: List["Product"] = []
+class Product(BaseProduct, PrintMixin):
+    __products_list: List[Self] = []
 
     name: str
     description: str
@@ -21,6 +24,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
         self.__class__.__products_list.append(self)
+        super().__init__()
 
     @property
     def price(self) -> float:
@@ -38,7 +42,7 @@ class Product:
             self.__price = new_price
 
     @classmethod
-    def new_product(cls: Type["Product"], product_params: Dict) -> "Product":
+    def new_product(cls, product_params: Dict) -> Union[Self, Any]:
         name = product_params["name"]
         description = product_params["description"]
         price = product_params["price"]
@@ -53,7 +57,7 @@ class Product:
 
         return cls(name, description, price, quantity)
 
-    def __add__(self, other: "Product") -> float:
+    def __add__(self, other: Self) -> float:
         if type(other) is type(self):
             summ = self.quantity * self.__price + other.quantity * other.__price
             return float(summ)
