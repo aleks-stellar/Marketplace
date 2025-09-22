@@ -145,3 +145,10 @@ def test_lawngrass_init() -> None:
     assert grass.country == "Россия"
     assert grass.germination_period == "7 дней"
     assert grass.color == "Зеленый"
+
+
+def test_create_invalid_product() -> None:
+    """Тестирует создание продукта в количестве ноль ед."""
+    with pytest.raises(ValueError):
+        invalid_product = Product("prod", "invalid product", 100, 0)
+        print(invalid_product)
