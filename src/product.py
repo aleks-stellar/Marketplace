@@ -22,6 +22,8 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.quantity = quantity
         self.__class__.__products_list.append(self)
         super().__init__()
@@ -122,3 +124,7 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
+
+if __name__ == '__main__':
+    prod = Product.new_product({"name": "a", "description": "aaa", "price": 100, "quantity": 0})
