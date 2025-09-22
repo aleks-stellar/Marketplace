@@ -124,7 +124,3 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
-
-
-if __name__ == '__main__':
-    prod = Product.new_product({"name": "a", "description": "aaa", "price": 100, "quantity": 0})
