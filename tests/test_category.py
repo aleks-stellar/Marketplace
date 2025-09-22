@@ -33,11 +33,11 @@ def test_category_add_not_product(cat_1: Category) -> None:
         cat_1.add_product("Not a product")
 
 
-def test_middle_price(cat_1) -> None:
+def test_middle_price(cat_1: Category) -> None:
     """Тестирует метод middle_price при наличии товаров в категории."""
     assert int(cat_1.middle_price()) == 195000
 
 
-def test_middle_price_empty_category(empty_cat) -> None:
+def test_middle_price_empty_category(empty_cat: Category) -> None:
     """Тестирует метод middle_price при отсутствии товаров в категории."""
     assert int(empty_cat.middle_price()) == 0
