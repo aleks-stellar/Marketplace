@@ -52,3 +52,8 @@ def cat_2(prod_3: Product) -> Category:
         "станет вашим другом и помощником",
         [prod_3]
     )
+
+
+@pytest.fixture
+def empty_cat() -> Category:
+    return Category("Empty category", "Empty category for tests", [])
